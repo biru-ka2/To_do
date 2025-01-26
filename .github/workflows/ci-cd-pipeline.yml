@@ -84,12 +84,12 @@ jobs:
         run: npm start &
 
       - name: Wait for the app to start
-        run: sleep 10
+        run: sleep 15 # Increase the delay if needed
 
       - name: Run OWASP ZAP Scan
         run: |
           docker pull ghcr.io/zaproxy/zaproxy:stable
-          docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+          docker run --network="host" -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
             -t http://localhost:3000 \
             -r zap_report.html \
             -x zap_report.xml
