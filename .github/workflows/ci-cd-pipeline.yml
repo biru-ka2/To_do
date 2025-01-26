@@ -92,8 +92,7 @@ jobs:
           docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
             -t http://localhost:3000 \
             -r zap_report.html \
-            -x zap_report.xml \
-            -c zap.conf
+            -x zap_report.xml
 
   deploy:
     runs-on: ubuntu-latest
