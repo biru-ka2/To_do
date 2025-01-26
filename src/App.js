@@ -94,14 +94,14 @@ export default function App() {
         <div className="App">
           {/* Add Helmet for security headers */}
           <Helmet>
-            <meta http-equiv="X-Frame-Options" content="DENY" />
-            <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+            <meta httpEquiv="X-Frame-Options" content="DENY" />
+            <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
             <meta
-              http-equiv="Content-Security-Policy"
+              httpEquiv="Content-Security-Policy"
               content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:;"
             />
             <meta
-              http-equiv="Permissions-Policy"
+              httpEquiv="Permissions-Policy"
               content="geolocation=(), microphone=(), camera=()"
             />
           </Helmet>
