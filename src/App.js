@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet"; // Import Helmet
 import {
   Button,
   Container,
@@ -91,6 +92,20 @@ export default function App() {
         withNormalizeCSS
       >
         <div className="App">
+          {/* Add Helmet for security headers */}
+          <Helmet>
+            <meta http-equiv="X-Frame-Options" content="DENY" />
+            <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+            <meta
+              http-equiv="Content-Security-Policy"
+              content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:;"
+            />
+            <meta
+              http-equiv="Permissions-Policy"
+              content="geolocation=(), microphone=(), camera=()"
+            />
+          </Helmet>
+
           <Modal
             opened={opened}
             size={"md"}
