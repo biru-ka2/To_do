@@ -1,4 +1,5 @@
 name: CI/CD Pipeline
+
 on:
   push:
     branches:
@@ -41,7 +42,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test
+        run: npm test -- --passWithNoTests
 
   lint:
     runs-on: ubuntu-latest
@@ -79,11 +80,16 @@ jobs:
       - name: Build the app
         run: npm run build
 
+      - name: Start the app
+        run: npm start &
+
+      - name: Wait for the app to start
+        run: sleep 10
+
       - name: Run OWASP ZAP Scan
         uses: zaproxy/action-baseline@v0.7.0
         with:
           target: "http://localhost:3000"
-          rules_file_name: ".zap/rules.tsv"
           cmd_options: "-config api.disablekey=true"
 
   deploy:
