@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet"; // Import Helmet
 import {
   Button,
   Container,
@@ -13,9 +12,8 @@ import {
 } from "@mantine/core";
 import { useState, useRef, useEffect } from "react";
 import { MoonStars, Sun, Trash } from "tabler-icons-react";
-
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
-import { useHotkeys, useLocalStorage } from "@mantine/hooks"; // Removed useColorScheme
+import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import Footer from "./Footer";
 
 export default function App() {
@@ -27,6 +25,7 @@ export default function App() {
     defaultValue: "light",
     getInitialValueInEffect: true,
   });
+
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
@@ -92,20 +91,7 @@ export default function App() {
         withNormalizeCSS
       >
         <div className="App">
-          {/* Add Helmet for security headers */}
-          <Helmet>
-            <meta httpEquiv="X-Frame-Options" content="DENY" />
-            <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-            <meta
-              httpEquiv="Content-Security-Policy"
-              content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:;"
-            />
-            <meta
-              httpEquiv="Permissions-Policy"
-              content="geolocation=(), microphone=(), camera=()"
-            />
-          </Helmet>
-
+          {/* Your app content */}
           <Modal
             opened={opened}
             size={"md"}

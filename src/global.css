@@ -1,0 +1,13 @@
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  body[data-mantine-color-scheme="dark"] {
+    background-color: #1a1b1e; /* Dark background color */
+    color: #ffffff; /* Light text color */
+  }
+  
+  body[data-mantine-color-scheme="light"] {
+    background-color: #ffffff; /* Light background color */
+    color: #000000; /* Dark text color */
+  }
