@@ -89,7 +89,7 @@ jobs:
       - name: Run OWASP ZAP Scan
         run: |
           docker pull ghcr.io/zaproxy/zaproxy:stable
-          docker run --network="host" -v $(pwd):/zap/wrk/:rw -u $(id -u):$(id -g) -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+          docker run --network="host" -v $(pwd):/zap/wrk/:rw -u root -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
             -t http://localhost:3000 \
             -r zap_report.html \
             -x zap_report.xml
