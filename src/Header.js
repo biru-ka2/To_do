@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"; // Import prop-types
 import { Group, Title, ActionIcon } from "@mantine/core";
 import { MoonStars, Sun } from "tabler-icons-react";
 
@@ -25,3 +26,9 @@ export default function Header({ colorScheme, toggleColorScheme }) {
     </Group>
   );
 }
+
+// Add prop type validation
+Header.propTypes = {
+  colorScheme: PropTypes.oneOf(["light", "dark"]).isRequired, // Validate colorScheme
+  toggleColorScheme: PropTypes.func.isRequired, // Validate toggleColorScheme
+};
