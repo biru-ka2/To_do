@@ -3,7 +3,6 @@ import {
   Button,
   Container,
   Text,
-  Title,
   Modal,
   TextInput,
   Group,
@@ -11,10 +10,11 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import { useState, useRef, useEffect } from "react";
-import { MoonStars, Sun, Trash } from "tabler-icons-react";
+import { Trash } from "tabler-icons-react";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import Footer from "./Footer";
+import Header from "./Header";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
@@ -91,71 +91,58 @@ export default function App() {
         withNormalizeCSS
       >
         <div className="App">
-          {/* Your app content */}
-          <Modal
-            opened={opened}
-            size={"md"}
-            title={"New Task"}
-            withCloseButton={false}
-            onClose={() => {
-              setOpened(false);
-            }}
-            centered
-          >
-            <TextInput
-              mt={"md"}
-              ref={taskTitle}
-              placeholder={"Task Title"}
-              required
-              label={"Title"}
-            />
-            <TextInput
-              ref={taskSummary}
-              mt={"md"}
-              placeholder={"Task Summary"}
-              label={"Summary"}
-            />
-            <Group mt={"md"} position={"apart"}>
-              <Button
-                onClick={() => {
-                  setOpened(false);
-                }}
-                variant={"subtle"}
-              >
-                Cancel
-              </Button>
-              <Button
-                onClick={() => {
-                  createTask();
-                  setOpened(false);
-                }}
-              >
-                Create Task
-              </Button>
-            </Group>
-          </Modal>
+          {/* Header Section */}
           <Container size={550} my={40}>
-            <Group position={"apart"}>
-              <Title
-                sx={(theme) => ({
-                  fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-                  fontWeight: 900,
-                })}
-              >
-                My Tasks
-              </Title>
-              <ActionIcon
-                color={"blue"}
-                onClick={() => toggleColorScheme()}
-                size="lg"
-              >
-                {colorScheme === "dark" ? (
-                  <Sun size={16} />
-                ) : (
-                  <MoonStars size={16} />
-                )}
-              </ActionIcon>
-            </Group>
+            <Header
+              colorScheme={colorScheme}
+              toggleColorScheme={toggleColorScheme}
+            />
+
+            {/* Modal for New Task */}
+            <Modal
+              opened={opened}
+              size={"md"}
+              title={"New Task"}
+              withCloseButton={false}
+              onClose={() => {
+                setOpened(false);
+              }}
+              centered
+            >
+              <TextInput
+                mt={"md"}
+                ref={taskTitle}
+                placeholder={"Task Title"}
+                required
+                label={"Title"}
+              />
+              <TextInput
+                ref={taskSummary}
+                mt={"md"}
+                placeholder={"Task Summary"}
+                label={"Summary"}
+              />
+              <Group mt={"md"} position={"apart"}>
+                <Button
+                  onClick={() => {
+                    setOpened(false);
+                  }}
+                  variant={"subtle"}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() => {
+                    createTask();
+                    setOpened(false);
+                  }}
+                >
+                  Create Task
+                </Button>
+              </Group>
+            </Modal>
+
+            {/* Task List */}
             {tasks.length > 0 ? (
               tasks.map((task, index) => {
                 if (task.title) {
