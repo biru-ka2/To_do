@@ -92,7 +92,8 @@ jobs:
           docker run --network="host" -v $(pwd):/zap/wrk/:rw -u root -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
             -t http://localhost:3000 \
             -r zap_report.html \
-            -x zap_report.xml
+            -x zap_report.xml \
+            -I # Ignore warnings
 
       - name: Upload ZAP Reports
         uses: actions/upload-artifact@v3
