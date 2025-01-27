@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import {
   Button,
   Container,
@@ -90,6 +91,19 @@ export default function App() {
         withGlobalStyles
         withNormalizeCSS
       >
+        {/* Add Helmet for Security Headers */}
+        <Helmet>
+          <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';"
+          />
+          <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+          <meta http-equiv="X-Frame-Options" content="DENY" />
+          <meta
+            http-equiv="Strict-Transport-Security"
+            content="max-age=31536000; includeSubDomains"
+          />
+        </Helmet>
         <div className="App">
           {/* Header Section */}
           <Container size={550} my={40}>
