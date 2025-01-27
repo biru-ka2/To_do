@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types"; // Import prop-types
+// import PropTypes from "prop-types"; // Import prop-types
 import { Group, Title, ActionIcon } from "@mantine/core";
 import { MoonStars, Sun } from "tabler-icons-react";
 
